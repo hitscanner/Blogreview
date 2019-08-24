@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    <p>환영합니다 {{user.username}}님</p>
+    <form action="{%url 'logout'%}" method="POST">
+        {%csrf_token%}
+        <input type="submit" value="로그아웃">
+    </form>
+    {% else %}
+    <p>로그인 해주세요</p>
+    <a href="{%url 'signup'%}"><button type="button">회원가입</button></a>
+    <a href="{%url 'login'%}"><button type="button">로그인</button></a>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <a href="{%url 'create'%}"><button type="button" class="btn btn-primary">글쓰기</button></a>
+    {% endif %}
+
+    {%for p in posts%}
+        <p>글 번호 : {{p.id}}</p>
+        <a href ="{%url 'read' p.id%}">글 제목 : {{p.title}}</a>
+        <p>글 내용 : {{p.content|truncatewords:10}}</p>
+        <p>글 작성 시간 : {{p.created_at}}</p>
+        <p>글 수정 시간 : {{p.updated_at}}</p>
+        <hr>
+    {%endfor%}
+{% endblock %}
+
+

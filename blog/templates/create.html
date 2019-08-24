@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>글쓰기 페이지</h1>
+
+    <form action="{%url 'create'%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <p>글제목</p>
+        <input type="text" name="title">
+        <p>글내용</p>
+        <textarea name="content" cols="30" rows="10"></textarea> <br>
+        <input type="submit" value="글쓰기">
+    </form>
+{% endblock %}
