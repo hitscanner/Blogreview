@@ -9,7 +9,6 @@ def signup(request):
         if request.POST['password1'] == request.POST['password2']:
             user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
             user.profile.nickname=request.POST["nickname"]
-            user.profile.region=request.POST["region"]
             auth.login(request, user)
             return redirect('index')
     return render(request, 'signup.html')
