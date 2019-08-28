@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
     <p>글 제목 : {{post.title}}</p>
-    <p>글쓴이 : {{user.profile.nickname}}</p>
-    <p>글 내용</p>
+    <p>글쓴이 : {{user.username}}</p>
+    <p>글 내용 : </p>
     {{post.content|linebreaksbr}}
     <br>
     <a href="/"><button>돌아가기</button></a>
